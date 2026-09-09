@@ -37,6 +37,15 @@ test('Stage 1 artifact is checksum-valid and contains no raw system prompt',()=>
   assert.ok(!('systemPrompt' in artifact.manifest));
 });
 
+test('press kit inventory hash matches release manifest',()=>{
+  const manifest=JSON.parse(readFileSync('RELEASE-MANIFEST.json','utf8')) as {publicInventorySha256:string};
+  const pressKit=readFileSync('PRESS-KIT.md','utf8');
+  assert.ok(
+    pressKit.includes(`Inventory SHA-256 staged: \`${manifest.publicInventorySha256}\``),
+    'PRESS-KIT.md must cite the same inventory SHA-256 as RELEASE-MANIFEST.json',
+  );
+});
+
 test('standalone public package reproduces the exact Stage 1 artifact',async()=>{
   const stored=parseRunArtifact(readFileSync('docs/releases/v0.1.0/stage1-paraguay-retrieval-001.json','utf8'));
   const fresh=createRunArtifact(await runEvalSlice(stage1RunInput));

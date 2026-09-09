@@ -1,0 +1,147 @@
+{
+  "artifactSha256": "4ffddc7fa09c5092258a632f79fb051e3b82ddbd142fad1383578a9c8491858d",
+  "artifactVersion": "1.0.0",
+  "manifest": {
+    "benchmarkSliceHash": "13e8ed22614ae9e3af0c96a582b43ee99af24c91321825fb0ea66743385e561c",
+    "benchmarkVersion": "0.1.0",
+    "maxOutputTokens": 32,
+    "modelId": "paraguay-official-knowledge-v0.1",
+    "modelRevision": "0.1.0",
+    "providerId": "nova-local-retrieval",
+    "runDate": "2026-09-09T13:20:00.000Z",
+    "runId": "nova-stage1-paraguay-retrieval-001",
+    "seed": null,
+    "systemPromptHash": "0fe33366e50d11521e5546df810f0a1fd9930798013bb7bd42ae60c010036dd5",
+    "temperature": 0,
+    "topP": 1
+  },
+  "operations": {
+    "errorRate": 0,
+    "errors": 0,
+    "latencyMs": {
+      "p50": 0,
+      "p95": 0
+    },
+    "tasks": 5,
+    "tokens": {
+      "input": 0,
+      "knownUsageTasks": 0,
+      "output": 0
+    }
+  },
+  "outputs": [
+    {
+      "finishReason": "retrieval_hit",
+      "latencyMs": 0,
+      "providerMetadata": {
+        "entryId": "capital",
+        "knowledgeBaseVersion": "0.1.0",
+        "retrievalStatus": "hit",
+        "sourceReference": "https://www2.mre.gov.py/la/index.php/el-paraguay/perfil-pais"
+      },
+      "taskId": "py.knowledge.capital-001.v1",
+      "text": "Asunción"
+    },
+    {
+      "finishReason": "retrieval_hit",
+      "latencyMs": 0,
+      "providerMetadata": {
+        "entryId": "official-languages",
+        "knowledgeBaseVersion": "0.1.0",
+        "retrievalStatus": "hit",
+        "sourceReference": "https://www.mre.gov.py/unidad-de-asuntos-linguisticos/"
+      },
+      "taskId": "py.knowledge.languages-001.v1",
+      "text": "Castellano y guaraní"
+    },
+    {
+      "finishReason": "retrieval_hit",
+      "latencyMs": 0,
+      "providerMetadata": {
+        "entryId": "currency",
+        "knowledgeBaseVersion": "0.1.0",
+        "retrievalStatus": "hit",
+        "sourceReference": "https://www2.mre.gov.py/usa/index.php/el-paraguay/perfil-pais"
+      },
+      "taskId": "py.knowledge.currency-001.v1",
+      "text": "Guaraní"
+    },
+    {
+      "finishReason": "retrieval_hit",
+      "latencyMs": 0,
+      "providerMetadata": {
+        "entryId": "departments",
+        "knowledgeBaseVersion": "0.1.0",
+        "retrievalStatus": "hit",
+        "sourceReference": "https://www.mre.gov.py/embapar-qatar/index.php/es/el-paraguay/perfil-pais"
+      },
+      "taskId": "py.knowledge.departments-001.v1",
+      "text": "17"
+    },
+    {
+      "finishReason": "retrieval_hit",
+      "latencyMs": 0,
+      "providerMetadata": {
+        "entryId": "independence",
+        "knowledgeBaseVersion": "0.1.0",
+        "retrievalStatus": "hit",
+        "sourceReference": "https://www2.mre.gov.py/la/index.php/el-paraguay/perfil-pais"
+      },
+      "taskId": "py.knowledge.independence-001.v1",
+      "text": "14 y 15 de mayo de 1811"
+    }
+  ],
+  "scores": {
+    "report": {
+      "domains": {
+        "paraguay-knowledge": {
+          "score": 1,
+          "tasks": 5,
+          "weight": 5
+        }
+      },
+      "overall": {
+        "score": 1,
+        "tasks": 5,
+        "weight": 5
+      }
+    },
+    "rows": [
+      {
+        "domain": "paraguay-knowledge",
+        "passed": true,
+        "score": 1,
+        "taskId": "py.knowledge.capital-001.v1",
+        "weight": 1
+      },
+      {
+        "domain": "paraguay-knowledge",
+        "passed": true,
+        "score": 1,
+        "taskId": "py.knowledge.languages-001.v1",
+        "weight": 1
+      },
+      {
+        "domain": "paraguay-knowledge",
+        "passed": true,
+        "score": 1,
+        "taskId": "py.knowledge.currency-001.v1",
+        "weight": 1
+      },
+      {
+        "domain": "paraguay-knowledge",
+        "passed": true,
+        "score": 1,
+        "taskId": "py.knowledge.departments-001.v1",
+        "weight": 1
+      },
+      {
+        "domain": "paraguay-knowledge",
+        "passed": true,
+        "score": 1,
+        "taskId": "py.knowledge.independence-001.v1",
+        "weight": 1
+      }
+    ]
+  }
+}

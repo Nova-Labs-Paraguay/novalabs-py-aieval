@@ -1,6 +1,6 @@
 # PY-AIEval v0.1 Release Checklist
 
-**State:** staged inside the private Nova Labs repository and mirrored byte-for-byte into `mateopalau/nova-py-aieval`. The publication repository is still private and has not yet been transferred to `Nova-Labs-Paraguay`; this file does not claim that a public `v0.1.0` release exists.
+**State:** staged inside the private Nova Labs repository and mirrored into `mateopalau/nova-py-aieval`. The publication repository is still private and has not yet been transferred to `Nova-Labs-Paraguay`; this file does not claim that a public `v0.1.0` release exists.
 
 ## Package gates
 
@@ -21,7 +21,7 @@
 
 ## Verified staged source
 
-GitHub Actions run `34395177934` completed successfully on 2026-09-09 against Nova Labs `main` commit `11a8f58351c4d7ba9e95d0a193e34daa62bec0c1`.
+A full Nova Labs `main` verification has passed after the inventory-consistency guard was merged.
 
 - [x] Root TypeScript check passes.
 - [x] Complete root unit/source-integrity suite passes.
@@ -31,19 +31,19 @@ GitHub Actions run `34395177934` completed successfully on 2026-09-09 against No
 - [x] `npm run verify:release` passes with no missing/unexpected files or forbidden content.
 - [x] Nova Labs production build passes.
 
-## Verified publication mirror
+## Publication mirror
 
 The mirrored package in `mateopalau/nova-py-aieval` is currently private.
 
 - [x] All 36 allowlisted release files are present and no corporate/private files were copied.
-- [x] Publication mirror tree matches the staged source package tree: `77d40822070871fcc85e5412057b7d0d7f4484e7`.
-- [x] Publication mirror CI run `34394683064` passes install, typecheck, tests and `verify:release`.
-- [x] Current publication mirror head: `9acfb29f34fe97a5a0fd238c76de5e21c184dc73`.
+- [x] Source-package and mirror tree identity is checked during staging and must be re-verified immediately before tagging.
+- [x] Mirror CI passes install, typecheck, tests and `verify:release`.
 
 ## External publication — intentionally pending
 
 - [ ] Transfer `mateopalau/nova-py-aieval` to `Nova-Labs-Paraguay/nova-py-aieval`.
 - [ ] Change repository visibility to public.
+- [ ] Re-verify source-package and mirror tree identity.
 - [ ] Verify repository from an unauthenticated/public view.
 - [ ] Create immutable tag `v0.1.0`.
 - [ ] Create GitHub Release for `v0.1.0`.

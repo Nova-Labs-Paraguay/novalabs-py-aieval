@@ -2,7 +2,8 @@
   "releaseVersion":"0.1.0",
   "sourcePrivateCommit":"6de32a57258c83add4e011f1deb3640334c08440",
   "stage1ArtifactSha256":"4ffddc7fa09c5092258a632f79fb051e3b82ddbd142fad1383578a9c8491858d",
-  "publicInventorySha256":"503a415a2558a70fc853cfe500235e19962ad2cca7778a33d77d260ff64c2502",
+  "dependencyLockSha256":"572ad3d67ffec0fe1caa8234e73f421a013bc3da383fe6bd621e94a2d846688d",
+  "publicInventorySha256":"fcbb6e01d49eaba7d447210a097ec8a38b297181079710521ec73ab8088d2d7e",
   "canonicalUrl":"https://www.novalabs.com.py/investigacion/benchmark",
   "targetRepository":"Nova-Labs-Paraguay/nova-py-aieval",
   "releaseState":"staged"

@@ -20,6 +20,8 @@
 - [x] Press-kit inventory claim is regression-tested against `RELEASE-MANIFEST.json`.
 - [x] `RELEASE-MANIFEST.json` is CI-bound to version `0.1.0`, source commit, artifact SHA, inventory SHA, canonical URL, target repository and `releaseState: staged`.
 - [x] `package.json` version must match the release manifest version.
+- [x] npm registry publication is blocked with `package.json` → `private: true`; v0.1.0 is distributed as a source repository/release, not an npm package.
+- [x] `verify:release` and tests fail if the npm publication block is removed.
 - [x] `CITATION.cff` is CI-bound to the intended canonical URL/repository/version and cannot contain `date-released` or claim an existing release while the manifest is staged.
 
 ## Verified staged source
@@ -31,7 +33,7 @@ A full Nova Labs `main` verification has passed after the inventory-consistency 
 - [x] Standalone package installs successfully.
 - [x] Standalone package TypeScript check passes.
 - [x] Standalone package tests reproduce the exact Stage 1 artifact.
-- [x] `npm run verify:release` passes with no missing/unexpected files or forbidden content.
+- [x] `npm run verify:release` passes with no missing/unexpected files, forbidden content, manifest drift, citation-state drift or npm-publish exposure.
 - [x] Nova Labs production build passes.
 
 ## Publication mirror
@@ -58,6 +60,7 @@ The mirrored package in `mateopalau/nova-py-aieval` is currently private.
 
 ## Deferred by design
 
+- npm registry publication: intentionally blocked for v0.1.0; GitHub source/release is the approved distribution channel.
 - Hugging Face upload: deferred because v0.1.0 is not a model or dataset release.
 - Zenodo/DOI: deferred until scholarly archival citation materially benefits a later benchmark/report release.
 - Public leaderboard: blocked until stable tasksets, contamination gates and same-protocol model runs justify one.

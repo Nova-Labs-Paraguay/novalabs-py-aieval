@@ -23,6 +23,7 @@ const expectedFiles=[
   'docs/REPRODUCIBILITY.md',
   'docs/releases/v0.1.0/STAGE1-PARAGUAY-RETRIEVAL-001.md',
   'docs/releases/v0.1.0/stage1-paraguay-retrieval-001.json',
+  'package-lock.json',
   'package.json',
   'scripts/verify-release.mjs',
   'src/examples/paraguay-official-retrieval.ts',
@@ -45,6 +46,8 @@ const expectedFiles=[
 
 const releaseManifest=JSON.parse(readFileSync(join(root,'RELEASE-MANIFEST.json'),'utf8'));
 const packageManifest=JSON.parse(readFileSync(join(root,'package.json'),'utf8'));
+const lockBytes=readFileSync(join(root,'package-lock.json'));
+const lockfile=JSON.parse(lockBytes.toString('utf8'));
 const citation=readFileSync(join(root,'CITATION.cff'),'utf8');
 const artifact=JSON.parse(readFileSync(join(root,'docs/releases/v0.1.0/stage1-paraguay-retrieval-001.json'),'utf8'));
 
@@ -52,7 +55,8 @@ const expectedManifest={
   releaseVersion:'0.1.0',
   sourcePrivateCommit:'6de32a57258c83add4e011f1deb3640334c08440',
   stage1ArtifactSha256:'4ffddc7fa09c5092258a632f79fb051e3b82ddbd142fad1383578a9c8491858d',
-  publicInventorySha256:'503a415a2558a70fc853cfe500235e19962ad2cca7778a33d77d260ff64c2502',
+  dependencyLockSha256:'572ad3d67ffec0fe1caa8234e73f421a013bc3da383fe6bd621e94a2d846688d',
+  publicInventorySha256:'fcbb6e01d49eaba7d447210a097ec8a38b297181079710521ec73ab8088d2d7e',
   canonicalUrl:'https://www.novalabs.com.py/investigacion/benchmark',
   targetRepository:'Nova-Labs-Paraguay/nova-py-aieval',
   releaseState:'staged',
@@ -63,6 +67,12 @@ for(const [key,value] of Object.entries(expectedManifest)){
 if(Object.keys(releaseManifest).sort().join('\n')!==Object.keys(expectedManifest).sort().join('\n'))failures.push('release_manifest_unexpected_fields');
 if(packageManifest.version!==releaseManifest.releaseVersion)failures.push('package_release_version_mismatch');
 if(packageManifest.private!==true)failures.push('npm_publication_not_blocked');
+
+const dependencyLockSha256=createHash('sha256').update(lockBytes).digest('hex');
+if(dependencyLockSha256!==releaseManifest.dependencyLockSha256)failures.push('dependency_lock_sha_mismatch');
+if(lockfile.lockfileVersion!==3)failures.push('dependency_lock_version_mismatch');
+if(lockfile.name!==packageManifest.name||lockfile.version!==packageManifest.version)failures.push('dependency_lock_package_identity_mismatch');
+if(lockfile.packages?.['']?.name!==packageManifest.name||lockfile.packages?.['']?.version!==packageManifest.version)failures.push('dependency_lock_root_identity_mismatch');
 
 if(artifact.artifactSha256!==releaseManifest.stage1ArtifactSha256)failures.push('artifact_sha_mismatch');
 if('systemPrompt' in artifact.manifest)failures.push('raw_system_prompt');
@@ -102,7 +112,7 @@ const forbidden=[
 const inventory=[];
 function walk(dir){
   for(const name of readdirSync(dir).sort()){
-    if(name==='node_modules'||name==='.git'||name==='package-lock.json')continue;
+    if(name==='node_modules'||name==='.git')continue;
     const p=join(dir,name);
     if(statSync(p).isDirectory())walk(p);
     else{
@@ -128,6 +138,7 @@ console.log(JSON.stringify({
   releaseState:releaseManifest.releaseState,
   targetRepository:releaseManifest.targetRepository,
   npmPublishBlocked:packageManifest.private===true,
+  dependencyLockSha256,
   inventorySha256,
   files:inventory.length,
 }));

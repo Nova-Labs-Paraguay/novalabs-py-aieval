@@ -18,6 +18,9 @@
 - [x] Bug and replication/critique issue templates are included.
 - [x] Secret/private-content scan and exact staged inventory gate are included.
 - [x] Press-kit inventory claim is regression-tested against `RELEASE-MANIFEST.json`.
+- [x] `RELEASE-MANIFEST.json` is CI-bound to version `0.1.0`, source commit, artifact SHA, inventory SHA, canonical URL, target repository and `releaseState: staged`.
+- [x] `package.json` version must match the release manifest version.
+- [x] `CITATION.cff` is CI-bound to the intended canonical URL/repository/version and cannot contain `date-released` or claim an existing release while the manifest is staged.
 
 ## Verified staged source
 
@@ -45,6 +48,7 @@ The mirrored package in `mateopalau/nova-py-aieval` is currently private.
 - [ ] Change repository visibility to public.
 - [ ] Re-verify source-package and mirror tree identity.
 - [ ] Verify repository from an unauthenticated/public view.
+- [ ] Set the actual public release date in `CITATION.cff` only after the release exists.
 - [ ] Create immutable tag `v0.1.0`.
 - [ ] Create GitHub Release for `v0.1.0`.
 - [ ] Verify release URL and tagged tree from a public view.
@@ -57,3 +61,5 @@ The mirrored package in `mateopalau/nova-py-aieval` is currently private.
 - Hugging Face upload: deferred because v0.1.0 is not a model or dataset release.
 - Zenodo/DOI: deferred until scholarly archival citation materially benefits a later benchmark/report release.
 - Public leaderboard: blocked until stable tasksets, contamination gates and same-protocol model runs justify one.
+
+Historical tags must never be force-updated.

@@ -14,12 +14,16 @@ Artifact SHA-256: `4ffddc7fa09c5092258a632f79fb051e3b82ddbd142fad1383578a9c84918
 
 ## Verificación
 
+El grafo npm de v0.1.0 está congelado en `package-lock.json`. Usá Node 22 y una instalación limpia:
+
 ```bash
-npm install
+npm ci
 npm run typecheck
 npm test
 npm run verify:release
 ```
+
+Dependency lock SHA-256: `572ad3d67ffec0fe1caa8234e73f421a013bc3da383fe6bd621e94a2d846688d`.
 
 Canonical: https://www.novalabs.com.py/investigacion/benchmark
 

@@ -13,15 +13,17 @@
 - [x] Stage 1 artifact is frozen with SHA-256 `4ffddc7fa09c5092258a632f79fb051e3b82ddbd142fad1383578a9c8491858d`.
 - [x] Stage 1 is labeled as a five-item development-only system baseline with zero model-training compute.
 - [x] Raw system prompt is not persisted in the released run artifact.
-- [x] Standalone CI definition includes install, typecheck, tests and release-integrity verification.
+- [x] Standalone CI definition includes clean install, typecheck, tests and release-integrity verification.
 - [x] Citation, methodology, limitations, contamination and reproducibility documentation are included.
 - [x] Bug and replication/critique issue templates are included.
 - [x] Secret/private-content scan and exact staged inventory gate are included.
 - [x] Press-kit inventory claim is regression-tested against `RELEASE-MANIFEST.json`.
-- [x] `RELEASE-MANIFEST.json` is CI-bound to version `0.1.0`, source commit, artifact SHA, inventory SHA, canonical URL, target repository and `releaseState: staged`.
+- [x] `RELEASE-MANIFEST.json` is CI-bound to version `0.1.0`, source commit, artifact SHA, dependency-lock SHA, inventory SHA, canonical URL, target repository and `releaseState: staged`.
 - [x] `package.json` version must match the release manifest version.
 - [x] npm registry publication is blocked with `package.json` → `private: true`; v0.1.0 is distributed as a source repository/release, not an npm package.
 - [x] `verify:release` and tests fail if the npm publication block is removed.
+- [x] `package-lock.json` lockfile v3 is versioned and its SHA-256 is frozen to `572ad3d67ffec0fe1caa8234e73f421a013bc3da383fe6bd621e94a2d846688d`.
+- [x] CI and reproducibility instructions use `npm ci`, not dependency-resolving `npm install`.
 - [x] `CITATION.cff` is CI-bound to the intended canonical URL/repository/version and cannot contain `date-released` or claim an existing release while the manifest is staged.
 
 ## Verified staged source
@@ -30,19 +32,19 @@ A full Nova Labs `main` verification has passed after the inventory-consistency 
 
 - [x] Root TypeScript check passes.
 - [x] Complete root unit/source-integrity suite passes.
-- [x] Standalone package installs successfully.
+- [x] Standalone package installs from the frozen lockfile.
 - [x] Standalone package TypeScript check passes.
 - [x] Standalone package tests reproduce the exact Stage 1 artifact.
-- [x] `npm run verify:release` passes with no missing/unexpected files, forbidden content, manifest drift, citation-state drift or npm-publish exposure.
+- [x] `npm run verify:release` passes with no missing/unexpected files, forbidden content, manifest drift, citation-state drift, npm-publish exposure or dependency-lock drift.
 - [x] Nova Labs production build passes.
 
 ## Publication mirror
 
 The mirrored package in `mateopalau/nova-py-aieval` is currently private.
 
-- [x] All 36 allowlisted release files are present and no corporate/private files were copied.
+- [x] All 37 allowlisted release files are present and no corporate/private files were copied.
 - [x] Source-package and mirror tree identity is checked during staging and must be re-verified immediately before tagging.
-- [x] Mirror CI passes install, typecheck, tests and `verify:release`.
+- [x] Mirror CI uses Node 22 + `npm ci` and passes typecheck, tests and `verify:release`.
 
 ## External publication — intentionally pending
 

@@ -44,9 +44,34 @@ const expectedFiles=[
 ].sort();
 
 const releaseManifest=JSON.parse(readFileSync(join(root,'RELEASE-MANIFEST.json'),'utf8'));
+const packageManifest=JSON.parse(readFileSync(join(root,'package.json'),'utf8'));
+const citation=readFileSync(join(root,'CITATION.cff'),'utf8');
 const artifact=JSON.parse(readFileSync(join(root,'docs/releases/v0.1.0/stage1-paraguay-retrieval-001.json'),'utf8'));
-if(artifact.artifactSha256!=='4ffddc7fa09c5092258a632f79fb051e3b82ddbd142fad1383578a9c8491858d')failures.push('artifact_sha_mismatch');
+
+const expectedManifest={
+  releaseVersion:'0.1.0',
+  sourcePrivateCommit:'6de32a57258c83add4e011f1deb3640334c08440',
+  stage1ArtifactSha256:'4ffddc7fa09c5092258a632f79fb051e3b82ddbd142fad1383578a9c8491858d',
+  publicInventorySha256:'503a415a2558a70fc853cfe500235e19962ad2cca7778a33d77d260ff64c2502',
+  canonicalUrl:'https://www.novalabs.com.py/investigacion/benchmark',
+  targetRepository:'Nova-Labs-Paraguay/nova-py-aieval',
+  releaseState:'staged',
+};
+for(const [key,value] of Object.entries(expectedManifest)){
+  if(releaseManifest[key]!==value)failures.push(`release_manifest_${key}_mismatch`);
+}
+if(Object.keys(releaseManifest).sort().join('\n')!==Object.keys(expectedManifest).sort().join('\n'))failures.push('release_manifest_unexpected_fields');
+if(packageManifest.version!==releaseManifest.releaseVersion)failures.push('package_release_version_mismatch');
+
+if(artifact.artifactSha256!==releaseManifest.stage1ArtifactSha256)failures.push('artifact_sha_mismatch');
 if('systemPrompt' in artifact.manifest)failures.push('raw_system_prompt');
+
+if(!/^title:\s*["']?PY-AIEval["']?\s*$/m.test(citation))failures.push('citation_title_mismatch');
+if(!/^version:\s*["']?0\.1\.0["']?\s*$/m.test(citation))failures.push('citation_version_mismatch');
+if(!citation.includes(`url: "${releaseManifest.canonicalUrl}"`))failures.push('citation_canonical_url_mismatch');
+if(!citation.includes(`repository-code: "https://github.com/${releaseManifest.targetRepository}"`))failures.push('citation_repository_mismatch');
+if(releaseManifest.releaseState==='staged'&&/^date-released:/m.test(citation))failures.push('staged_citation_must_not_have_release_date');
+if(releaseManifest.releaseState==='staged'&&/cite this release/i.test(citation))failures.push('staged_citation_must_not_claim_release');
 
 for(const p of [
   'src/tasksets/reasoning-dev-v0.1.ts',
@@ -96,4 +121,11 @@ for(const path of inventory)if(!expectedFiles.includes(path))failures.push(`unex
 const inventorySha256=createHash('sha256').update(inventory.join('\n'),'utf8').digest('hex');
 if(releaseManifest.publicInventorySha256!==inventorySha256)failures.push('inventory_sha_mismatch');
 if(failures.length){console.error([...new Set(failures)].join('\n'));process.exit(1);}
-console.log(JSON.stringify({ok:true,inventorySha256,files:inventory.length}));
+console.log(JSON.stringify({
+  ok:true,
+  releaseVersion:releaseManifest.releaseVersion,
+  releaseState:releaseManifest.releaseState,
+  targetRepository:releaseManifest.targetRepository,
+  inventorySha256,
+  files:inventory.length,
+}));

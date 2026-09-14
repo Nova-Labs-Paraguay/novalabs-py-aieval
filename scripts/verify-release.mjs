@@ -62,6 +62,7 @@ for(const [key,value] of Object.entries(expectedManifest)){
 }
 if(Object.keys(releaseManifest).sort().join('\n')!==Object.keys(expectedManifest).sort().join('\n'))failures.push('release_manifest_unexpected_fields');
 if(packageManifest.version!==releaseManifest.releaseVersion)failures.push('package_release_version_mismatch');
+if(packageManifest.private!==true)failures.push('npm_publication_not_blocked');
 
 if(artifact.artifactSha256!==releaseManifest.stage1ArtifactSha256)failures.push('artifact_sha_mismatch');
 if('systemPrompt' in artifact.manifest)failures.push('raw_system_prompt');
@@ -126,6 +127,7 @@ console.log(JSON.stringify({
   releaseVersion:releaseManifest.releaseVersion,
   releaseState:releaseManifest.releaseState,
   targetRepository:releaseManifest.targetRepository,
+  npmPublishBlocked:packageManifest.private===true,
   inventorySha256,
   files:inventory.length,
 }));

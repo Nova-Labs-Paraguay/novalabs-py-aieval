@@ -1,8 +1,7 @@
 cff-version: 1.2.0
-message: "If you use PY-AIEval, cite this release."
+message: "Citation metadata for PY-AIEval v0.1.0; public release pending."
 title: "PY-AIEval"
 version: "0.1.0"
-date-released: 2026-09-09
 authors:
   - name: "Nova Labs Research"
 url: "https://www.novalabs.com.py/investigacion/benchmark"

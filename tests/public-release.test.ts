@@ -39,8 +39,9 @@ test('staged release manifest is frozen to the intended v0.1.0 target',()=>{
     targetRepository:'Nova-Labs-Paraguay/nova-py-aieval',
     releaseState:'staged',
   });
-  const packageManifest=JSON.parse(readFileSync('package.json','utf8')) as {version:string};
+  const packageManifest=JSON.parse(readFileSync('package.json','utf8')) as {version:string;private:boolean};
   assert.equal(packageManifest.version,manifest.releaseVersion);
+  assert.equal(packageManifest.private,true,'v0.1.0 is distributed through the public source repository, not the npm registry');
 });
 
 test('citation metadata is prepared but does not claim a public release date while staged',()=>{

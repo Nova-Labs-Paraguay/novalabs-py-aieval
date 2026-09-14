@@ -26,7 +26,8 @@ Los tasksets públicos de v0.1 están marcados explícitamente como `rankable: f
 - Repositorio previsto: `https://github.com/Nova-Labs-Paraguay/nova-py-aieval`
 - Release previsto: `v0.1.0`
 - Stage 1 artifact SHA-256: `4ffddc7fa09c5092258a632f79fb051e3b82ddbd142fad1383578a9c8491858d`
-- Inventory SHA-256 staged: `503a415a2558a70fc853cfe500235e19962ad2cca7778a33d77d260ff64c2502`
+- Dependency lock SHA-256 staged: `572ad3d67ffec0fe1caa8234e73f421a013bc3da383fe6bd621e94a2d846688d`
+- Inventory SHA-256 staged: `fcbb6e01d49eaba7d447210a097ec8a38b297181079710521ec73ab8088d2d7e`
 
 Los links al repositorio/release deben usarse públicamente solo después de que existan y hayan sido verificados.
 
@@ -68,7 +69,7 @@ Sí. El repositorio público incluye templates para bugs, fallos de reproducibil
 
 > Nova Labs Research. *PY-AIEval v0.1*. 2026. Canonical: https://www.novalabs.com.py/investigacion/benchmark
 
-La metadata machine-readable se publica en `CITATION.cff`.
+La metadata machine-readable se prepara en `CITATION.cff`; la fecha pública se agrega únicamente cuando exista el release real.
 
 ## Contacto
 

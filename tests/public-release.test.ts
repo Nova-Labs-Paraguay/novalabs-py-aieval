@@ -28,7 +28,7 @@ test('all public development tasksets remain non-rankable',()=>{
   for(const set of [reasoningDevV01,paraguayKnowledgeDevV01,paraguayanSpanishDevV01,toolUseDevV01])assert.equal(set.rankable,false);
 });
 
-test('staged release manifest is frozen to the intended v0.1.0 target',()=>{
+test('published release manifest is frozen to the v0.1.0 release',()=>{
   const manifest=JSON.parse(readFileSync('RELEASE-MANIFEST.json','utf8')) as Record<string,string>;
   assert.deepEqual(manifest,{
     releaseVersion:'0.1.0',
@@ -36,22 +36,24 @@ test('staged release manifest is frozen to the intended v0.1.0 target',()=>{
     stage1ArtifactSha256:'4ffddc7fa09c5092258a632f79fb051e3b82ddbd142fad1383578a9c8491858d',
     publicInventorySha256:'503a415a2558a70fc853cfe500235e19962ad2cca7778a33d77d260ff64c2502',
     canonicalUrl:'https://www.novalabs.com.py/investigacion/benchmark',
-    targetRepository:'Nova-Labs-Paraguay/nova-py-aieval',
-    releaseState:'staged',
+    targetRepository:'Nova-Labs-Paraguay/novalabs-py-aieval',
+    releaseState:'published',
+    releaseTag:'PY-AIEval-v0.1.0',
+    releaseDate:'2026-10-03',
   });
   const packageManifest=JSON.parse(readFileSync('package.json','utf8')) as {version:string;private:boolean};
   assert.equal(packageManifest.version,manifest.releaseVersion);
   assert.equal(packageManifest.private,true,'v0.1.0 is distributed through the public source repository, not the npm registry');
 });
 
-test('citation metadata is prepared but does not claim a public release date while staged',()=>{
+test('citation metadata carries the real release date and repository, without a DOI',()=>{
   const citation=readFileSync('CITATION.cff','utf8');
   assert.match(citation,/title:\s*"PY-AIEval"/);
   assert.match(citation,/version:\s*"0\.1\.0"/);
-  assert.match(citation,/public release pending/i);
-  assert.match(citation,/repository-code:\s*"https:\/\/github\.com\/Nova-Labs-Paraguay\/nova-py-aieval"/);
-  assert.doesNotMatch(citation,/^date-released:/m);
-  assert.doesNotMatch(citation,/cite this release/i);
+  assert.match(citation,/^date-released:\s*2026-10-03\s*$/m);
+  assert.match(citation,/repository-code:\s*"https:\/\/github\.com\/Nova-Labs-Paraguay\/novalabs-py-aieval"/);
+  assert.doesNotMatch(citation,/public release pending/i);
+  assert.doesNotMatch(citation,/^doi:/m);
 });
 
 test('Stage 1 artifact is checksum-valid and contains no raw system prompt',()=>{

@@ -1,6 +1,6 @@
 # PY-AIEval v0.1 — Press Kit factual
 
-**Estado:** preparado para publicación técnica. No distribuir antes de que exista y se verifique el repositorio público `Nova-Labs-Paraguay/nova-py-aieval` con release inmutable `v0.1.0`.
+**Estado:** publicado el 3 de octubre de 2026 (release `PY-AIEval-v0.1.0`). Usar los enlaces de la sección «Artefactos de referencia».
 
 ## Titular recomendado
 
@@ -23,12 +23,12 @@ Los tasksets públicos de v0.1 están marcados explícitamente como `rankable: f
 ## Artefactos de referencia
 
 - Canonical humano: `https://www.novalabs.com.py/investigacion/benchmark`
-- Repositorio previsto: `https://github.com/Nova-Labs-Paraguay/nova-py-aieval`
-- Release previsto: `v0.1.0`
+- Repositorio: `https://github.com/Nova-Labs-Paraguay/novalabs-py-aieval`
+- Release: `https://github.com/Nova-Labs-Paraguay/novalabs-py-aieval/releases/tag/PY-AIEval-v0.1.0`
 - Stage 1 artifact SHA-256: `4ffddc7fa09c5092258a632f79fb051e3b82ddbd142fad1383578a9c8491858d`
 - Inventory SHA-256 staged: `503a415a2558a70fc853cfe500235e19962ad2cca7778a33d77d260ff64c2502`
 
-Los links al repositorio/release deben usarse públicamente solo después de que existan y hayan sido verificados.
+Citar siempre el release `PY-AIEval-v0.1.0`; el tag no se mueve. Una corrección se publica como una versión nueva.
 
 ## Qué demuestra
 

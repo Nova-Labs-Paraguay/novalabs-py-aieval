@@ -4,6 +4,8 @@
   "stage1ArtifactSha256":"4ffddc7fa09c5092258a632f79fb051e3b82ddbd142fad1383578a9c8491858d",
   "publicInventorySha256":"503a415a2558a70fc853cfe500235e19962ad2cca7778a33d77d260ff64c2502",
   "canonicalUrl":"https://www.novalabs.com.py/investigacion/benchmark",
-  "targetRepository":"Nova-Labs-Paraguay/nova-py-aieval",
-  "releaseState":"staged"
+  "targetRepository":"Nova-Labs-Paraguay/novalabs-py-aieval",
+  "releaseState":"published",
+  "releaseTag":"PY-AIEval-v0.1.0",
+  "releaseDate":"2026-10-03"
 }

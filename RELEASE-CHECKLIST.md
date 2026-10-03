@@ -1,6 +1,6 @@
 # PY-AIEval v0.1 Release Checklist
 
-**State:** staged inside the private Nova Labs repository and mirrored into `mateopalau/nova-py-aieval`. The publication repository is still private and has not yet been transferred to `Nova-Labs-Paraguay`; this file does not claim that a public `v0.1.0` release exists.
+**State:** published. The public repository is `Nova-Labs-Paraguay/novalabs-py-aieval` and the release is `PY-AIEval-v0.1.0` (2026-10-03). The tag points at commit `3d9b1e0e604216180961869108156e1458d336cb`. v0.1.0 has no DOI and is not published to npm.
 
 ## Package gates
 
@@ -44,17 +44,16 @@ The mirrored package in `mateopalau/nova-py-aieval` is currently private.
 - [x] Source-package and mirror tree identity is checked during staging and must be re-verified immediately before tagging.
 - [x] Mirror CI passes install, typecheck, tests and `verify:release`.
 
-## External publication — intentionally pending
+## External publication
 
-- [ ] Transfer `mateopalau/nova-py-aieval` to `Nova-Labs-Paraguay/nova-py-aieval`.
-- [ ] Change repository visibility to public.
-- [ ] Re-verify source-package and mirror tree identity.
-- [ ] Verify repository from an unauthenticated/public view.
-- [ ] Set the actual public release date in `CITATION.cff` only after the release exists.
-- [ ] Create immutable tag `v0.1.0`.
-- [ ] Create GitHub Release for `v0.1.0`.
-- [ ] Verify release URL and tagged tree from a public view.
-- [ ] Update `https://www.novalabs.com.py/investigacion/benchmark` with the live repository/release links and exact public-release status.
+- [x] Move the repository to `Nova-Labs-Paraguay` (published as `Nova-Labs-Paraguay/novalabs-py-aieval`; the planned name `nova-py-aieval` was not used).
+- [x] Change repository visibility to public.
+- [x] Verify repository and tagged tree from an unauthenticated/public view (tag `PY-AIEval-v0.1.0` resolves to `3d9b1e0`, identical to the staged package apart from formatting of three files).
+- [x] Set the actual public release date in `CITATION.cff` (`2026-10-03`).
+- [x] Create tag `PY-AIEval-v0.1.0` (lightweight tag; it is never moved, and a correction ships as a new version).
+- [x] Create GitHub Release `PY-AIEval-v0.1.0`.
+- [ ] Verify the release page and its notes from a public view.
+- [x] Update `https://www.novalabs.com.py/investigacion/benchmark` with the live repository/release links and exact public-release status (source updated; deployment pending).
 - [ ] Verify the canonical page after deployment.
 - [ ] Publish the technical announcement only after the preceding public steps are complete.
 

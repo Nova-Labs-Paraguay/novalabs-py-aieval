@@ -54,8 +54,10 @@ const expectedManifest={
   stage1ArtifactSha256:'4ffddc7fa09c5092258a632f79fb051e3b82ddbd142fad1383578a9c8491858d',
   publicInventorySha256:'503a415a2558a70fc853cfe500235e19962ad2cca7778a33d77d260ff64c2502',
   canonicalUrl:'https://www.novalabs.com.py/investigacion/benchmark',
-  targetRepository:'Nova-Labs-Paraguay/nova-py-aieval',
-  releaseState:'staged',
+  targetRepository:'Nova-Labs-Paraguay/novalabs-py-aieval',
+  releaseState:'published',
+  releaseTag:'PY-AIEval-v0.1.0',
+  releaseDate:'2026-10-03',
 };
 for(const [key,value] of Object.entries(expectedManifest)){
   if(releaseManifest[key]!==value)failures.push(`release_manifest_${key}_mismatch`);
@@ -71,8 +73,8 @@ if(!/^title:\s*["']?PY-AIEval["']?\s*$/m.test(citation))failures.push('citation_
 if(!/^version:\s*["']?0\.1\.0["']?\s*$/m.test(citation))failures.push('citation_version_mismatch');
 if(!citation.includes(`url: "${releaseManifest.canonicalUrl}"`))failures.push('citation_canonical_url_mismatch');
 if(!citation.includes(`repository-code: "https://github.com/${releaseManifest.targetRepository}"`))failures.push('citation_repository_mismatch');
-if(releaseManifest.releaseState==='staged'&&/^date-released:/m.test(citation))failures.push('staged_citation_must_not_have_release_date');
-if(releaseManifest.releaseState==='staged'&&/cite this release/i.test(citation))failures.push('staged_citation_must_not_claim_release');
+if(!new RegExp('^date-released:\\s*["\']?'+releaseManifest.releaseDate+'["\']?\\s*$','m').test(citation))failures.push('citation_release_date_mismatch');
+if(/public release pending/i.test(citation))failures.push('citation_still_claims_release_pending');
 
 for(const p of [
   'src/tasksets/reasoning-dev-v0.1.ts',
